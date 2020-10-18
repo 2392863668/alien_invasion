@@ -22,6 +22,17 @@ class Ship:
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
 
+        # 移动标志
+        self.move_right = False
+        self.move_left = False
+
     def blitme(self):
         """在指定位置绘制飞船"""
         self.screen.blit(self.image, self.rect)
+
+    def update(self):
+        """根据移动标识调整飞船位置"""
+        if self.move_right:
+            self.rect.centerx += 1
+        elif self.move_left:
+            self.rect.centerx -= 1
