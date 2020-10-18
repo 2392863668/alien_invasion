@@ -15,12 +15,14 @@ def check_keydown_events(event, ship):
     elif event.key == pygame.K_LEFT:
         ship.move_left = True
 
+
 def check_keyup_events(event, ship):
     """响应松开"""
     if event.key == pygame.K_RIGHT:
         ship.move_right = False
     elif event.key == pygame.K_LEFT:
         ship.move_left = False
+
 
 def check_events(ship):
     """响应按键和鼠标事件"""
