@@ -48,3 +48,11 @@ def update_screen(ai_settings, screen, ship, bullets):
     ship.blitme()
     # 让最近绘制的屏幕可见
     pygame.display.flip()
+
+
+def update_bullets(bullets):
+    bullets.update()
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            # 如果超出上边界
+            bullets.remove(bullet)
