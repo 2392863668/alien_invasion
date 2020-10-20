@@ -50,6 +50,21 @@ def check_events(ai_settings, screen, ship, bullets):
             check_keyup_events(event, ai_settings, screen, ship, bullets)
 
 
+def check_fleet_edges(ai_settings, aliens):
+    """有外星人触碰到边缘时采取措施"""
+    for alien in aliens.sprites():
+        if alien.check_edges():
+            change_fleet_direction(ai_settings, aliens)
+            break
+
+
+def change_fleet_direction(ai_settings, aliens):
+    """将外星人下移，并改变它们的方向"""
+    for alien in aliens.sprites():
+        alien.rect.y += ai_settings.fleet_drop_speed
+    ai_settings.fleet_direction *= -1
+
+
 def update_screen(ai_settings, screen, ship, aliens, bullets):
     """每次循环时都重绘屏幕"""
     screen.fill(ai_settings.bg_color)
@@ -69,8 +84,9 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
 
-def update_aliens(aliens):
+def update_aliens(ai_settings, aliens):
     """更新外星人群的位置"""
+    change_fleet_direction(ai_settings, aliens)
     aliens.update()
 
 
