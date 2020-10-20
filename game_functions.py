@@ -76,7 +76,7 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
     pygame.display.flip()
 
 
-def update_bullets(aliens, bullets):
+def update_bullets(ai_settings, screen, ship, aliens, bullets):
     """更新子弹的位置，并删除已经消失的子弹"""
     bullets.update()
     for bullet in bullets.copy():
@@ -87,6 +87,11 @@ def update_bullets(aliens, bullets):
     # 两个布尔参数表示碰撞以后是否删除对应的子弹和外星人
     # collisions = pygame.sprite.groupcollide(bullets, aliens, False, True)  # 高能子弹，碰撞后子弹不消失，有穿透能力
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+
+    if len(aliens) == 0:
+        # 删除原有的子弹并创建一群新的外星人
+        bullets.empty()
+        create_fleet(ai_settings, screen, ship, aliens)
 
 
 def update_aliens(ai_settings, aliens):
