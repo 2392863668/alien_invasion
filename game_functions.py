@@ -86,7 +86,7 @@ def update_bullets(bullets):
 
 def update_aliens(ai_settings, aliens):
     """更新外星人群的位置"""
-    change_fleet_direction(ai_settings, aliens)
+    check_fleet_edges(ai_settings, aliens)
     aliens.update()
 
 
