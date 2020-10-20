@@ -69,6 +69,11 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
 
+def update_aliens(aliens):
+    """更新外星人群的位置"""
+    aliens.update()
+
+
 def get_number_alien_x(ai_settings, alien_width):
     available_space_x = ai_settings.screen_width - 2 * alien_width
     number_aliens_x = int(available_space_x / (2 * alien_width))
