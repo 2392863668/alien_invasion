@@ -83,9 +83,16 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
         if bullet.rect.bottom <= 0:
             # 如果超出上边界
             bullets.remove(bullet)
+    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+
+
+def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
     # 检查是否有子弹击中了外星人，删除子弹和外星人
     # 两个布尔参数表示碰撞以后是否删除对应的子弹和外星人
-    # collisions = pygame.sprite.groupcollide(bullets, aliens, False, True)  # 高能子弹，碰撞后子弹不消失，有穿透能力
+
+    # collisions = pygame.sprite.groupcollide(bullets, aliens, False, True)
+    # 高能子弹，碰撞后子弹不消失，有穿透能力
+
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     if len(aliens) == 0:
