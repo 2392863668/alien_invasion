@@ -91,13 +91,16 @@ def change_fleet_direction(ai_settings, aliens):
     ai_settings.fleet_direction *= -1
 
 
-def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
+def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button):
     """每次循环时都重绘屏幕"""
     screen.fill(ai_settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+
+    # 显示得分
+    sb.show_score()
     # 如果游戏处于非活动状态，就绘制 Play 按钮
     if not stats.game_active:
         play_button.draw_button()
